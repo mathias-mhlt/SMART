@@ -1,14 +1,26 @@
-# Feature Relationship Anomaly Detection 🔍
+# Dataset Validation Criteria Documentation
 
-Detect weird combinations of features that shouldn't exist together, even if individual values look normal!
+**Author:** Ahmed Ayachi  
+**Date:** _Generated on: {{TODAY}}_
 
-## 🧩 How It Works
+---
 
-### 1. Learn Normal Patterns
-For each category (e.g., Dogs vs Werewolves):
+## 📘 Introduction
 
-```plaintext
-          | Avg Size | Avg Legs | Common Color
-----------|----------|----------|-------------
-🐶 Dogs    | 10cm     | 4        | Brown       
-🐺 Werewolves | 100cm   | 2        | Gray
+This document formalizes the data validation criteria implemented in the automated quality checking system. The framework detects four main types of data issues:
+
+- Rare categorical values  
+- Pattern mismatches and typos  
+- Numerical outliers  
+- Feature relationship anomalies  
+
+---
+
+## ✅ Validation Criteria
+
+### 1. Rare Categorical Values
+
+- **Purpose:** Identify infrequently occurring categorical values  
+- **Methodology:**  
+  A value is considered rare if:
+
