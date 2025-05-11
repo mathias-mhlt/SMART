@@ -76,6 +76,3 @@
 - Parameters:
   - Feature importance threshold: 0.1
   - Mahalanobis distance threshold: 3
-
-- Example:
-  "Werewolf" with weight=15kg and height=0.4m matches dog profile.
