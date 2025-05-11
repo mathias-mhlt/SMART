@@ -16,9 +16,6 @@
 - Parameters:
   - τ_rare (frequency threshold): Default = 0.05
 
-- Example:
-  A label like "werewolf" appearing in only 0.1% of rows.
-
 -----------------------------------------
 1.2 Fuzzy Pattern Matching
 -----------------------------------------
