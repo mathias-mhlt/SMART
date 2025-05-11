@@ -1,8 +1,3 @@
-
-Dataset Validation Criteria Documentation
-1. Introduction
-=========================================
-
 This document outlines the automated validation criteria used for detecting common data quality issues.
 The system checks for:
 
