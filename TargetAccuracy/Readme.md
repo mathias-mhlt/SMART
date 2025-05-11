@@ -1,18 +1,13 @@
 
 Dataset Validation Criteria Documentation
-Author: Ahmed Ayachi
-Date: [Insert today's date]
-
-=========================================
 1. Introduction
 =========================================
 
 This document outlines the automated validation criteria used for detecting common data quality issues.
 The system checks for:
 
-- Rare categorical values
-- Pattern mismatches and typos
-- Numerical outliers
+- Rare categorical values/Numerical outliers
+- Simple pattern mismatches and typos
 - Feature relationship anomalies
 
 =========================================
