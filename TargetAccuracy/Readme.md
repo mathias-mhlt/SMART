@@ -1,16 +1,8 @@
-This document outlines the automated validation criteria used for detecting common data quality issues.
-The system checks for:
-
-- Rare categorical values/Numerical outliers
-- Simple pattern mismatches and typos
-- Feature relationship anomalies
-
-=========================================
-2. Validation Criteria
+1 Validation Criteria
 =========================================
 
 -----------------------------------------
-2.1 Rare Categorical Values
+1.1 Rare Categorical Values
 -----------------------------------------
 
 - Purpose:
@@ -28,7 +20,7 @@ The system checks for:
   A label like "werewolf" appearing in only 0.1% of rows.
 
 -----------------------------------------
-2.2 Fuzzy Pattern Matching
+1.2 Fuzzy Pattern Matching
 -----------------------------------------
 
 - Purpose:
@@ -49,7 +41,7 @@ The system checks for:
   "ATAA" flagged as possible typo of "ATA".
 
 -----------------------------------------
-2.3 Numerical Outliers
+1.3 Numerical Outliers
 -----------------------------------------
 
 - Purpose:
@@ -68,7 +60,7 @@ The system checks for:
   Weight = 10kg in a dataset where 99% are between 50–100kg.
 
 -----------------------------------------
-2.4 Feature Relationship Anomalies
+1.4 Feature Relationship Anomalies
 -----------------------------------------
 
 - Purpose:
@@ -90,25 +82,3 @@ The system checks for:
 
 - Example:
   "Werewolf" with weight=15kg and height=0.4m matches dog profile.
-
-=========================================
-3. Summary Table
-=========================================
-
-| Criterion      | Metric            | Threshold | Detection Example               |
-|----------------|-------------------|-----------|---------------------------------|
-| Rarity         | Frequency          | < 5%      | Rare category values            |
-| Typo           | Edit distance      | 1         | "ATAA" → "ATA"                  |
-| Outlier        | Modified Z-score   | > 3       | Extreme numerical values        |
-| Relationships  | Mahalanobis        | > 3       | Invalid feature combinations    |
-
-=========================================
-4. Implementation Notes
-=========================================
-
-- Univariate Checks: Applied per column.
-- Multivariate Analysis: Validates relationships across features.
-- Adaptive Thresholds: Parameters can be configured per dataset.
-- Context Awareness: Class-specific pattern validation.
-
-=========================================
