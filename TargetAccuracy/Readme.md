@@ -17,7 +17,7 @@
   - τ_rare (frequency threshold): Default = 0.05
 
 -----------------------------------------
-1.2 Fuzzy Pattern Matching
+1.2 Pattern Matching
 -----------------------------------------
 
 - Purpose:
@@ -26,16 +26,7 @@
 - Methodology (Pseudo-code):
 
     1. Extract top 5 most frequent values
-    2. Generate regex patterns with 1-character edit distance
-    3. Match using: (?:pattern){e<=1}
-    4. Check: length(value) >= ρ * length(pattern)
-
-- Parameters:
-  - Max edit distance: 1
-  - Partial ratio ρ: 0.7
-
-- Example:
-  "ATAA" flagged as possible typo of "ATA".
+    3. Match possible mistakes like ATAA instead of ATA (using Regex)
 
 -----------------------------------------
 1.3 Numerical Outliers
@@ -52,9 +43,6 @@
 - Parameters:
   - Z-score threshold: 3
   - IQR outlier range: [Q1 - 1.5 * IQR, Q3 + 1.5 * IQR]
-
-- Example:
-  Weight = 10kg in a dataset where 99% are between 50–100kg.
 
 -----------------------------------------
 1.4 Feature Relationship Anomalies
