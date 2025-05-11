@@ -1,6 +1,6 @@
 1 Validation Criteria
 =========================================
-
+We use 4 different ideas to say if a value is (probably?) wrong; Rarity, slight changes to words, numerical outliers, and possible non coherent relationships (in comparison to the other relationships)
 -----------------------------------------
 1.1 Rare Categorical Values
 -----------------------------------------
