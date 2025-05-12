@@ -41,7 +41,7 @@ for col_name, num, strs in mixed_columns:
     if 30 <= total_wrongly_attributed_percentage <= 70:
         result.append(f"Column '{col_name}' has {wrongly_attributed_percentage:.2f}% wrongly attributed. Result: 0.")
     else:
-        result.append(f"Column '{col_name}' has {wrongly_attributed_percentage:.2f}% wrongly attributed. Result: {total_wrongly_attributed_percentage:.2f}%.")
+        result.append(f"Column '{col_name}' has {wrongly_attributed_percentage:.2f}% wrongly attributed. Result: {1}.")
 
 # Print the result or a message if no mixed columns found
 if result:
