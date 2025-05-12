@@ -40,13 +40,12 @@ for col in numeric_columns:
 df.to_csv("outliers_heart.csv", index=False)
 
 outliersZcoreScore = res('outliers_heart.csv')
-outliersColumnsScore = res('outliers_heart.csv')
-diversityScore = res('outliers_heart.csv')
-cellsCompletnessScore = res('outliers_heart.csv')
+outliersColumnsScore = printresult('outliers_heart.csv')
+diversityScore = global_dataset_score('outliers_heart.csv')
+cellsCompletnessScore = completeness_score('outliers_heart.csv')
 print(outliersZcoreScore)
 print(outliersColumnsScore)
 print(diversityScore)
 print(cellsCompletnessScore)
 
-finalresult = result
-print("Score final :"+str(result+result1))
+print("Score final :"+str(outliersZcoreScore + outliersColumnsScore + diversityScore + cellsCompletnessScore))
