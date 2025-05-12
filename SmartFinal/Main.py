@@ -39,10 +39,14 @@ for col in numeric_columns:
 # Save the dataset with outliers
 df.to_csv("outliers_heart.csv", index=False)
 
-result = res('outliers_heart.csv')
-result1 = printresult('outliers_heart.csv')
-print(result)
-print(result1)
+outliersZcoreScore = res('outliers_heart.csv')
+outliersColumnsScore = res('outliers_heart.csv')
+diversityScore = res('outliers_heart.csv')
+cellsCompletnessScore = res('outliers_heart.csv')
+print(outliersZcoreScore)
+print(outliersColumnsScore)
+print(diversityScore)
+print(cellsCompletnessScore)
 
 finalresult = result
 print("Score final :"+str(result+result1))
