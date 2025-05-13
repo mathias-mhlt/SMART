@@ -1,6 +1,7 @@
 from MixedColumnDetector import res
 from Z_Score import printresult
-from Rarity import score_calculation
+from CompletnessPart1 import completeness_score
+from DIversificationScore import global_dataset_score
 
 import pandas as pd
 import random
