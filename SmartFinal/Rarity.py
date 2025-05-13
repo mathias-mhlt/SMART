@@ -1,15 +1,4 @@
-import os
-import numpy as np 
-import pandas as pd 
-import warnings
-import seaborn as sns
-import matplotlib.pyplot as plt
-"import plotly.express as px"
-warnings.filterwarnings("ignore")
-pd.set_option("display.max_rows",None)
-from sklearn import preprocessing
-import matplotlib 
-matplotlib.style.use('ggplot')
+import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
 
@@ -48,6 +37,6 @@ def rarity(donnees):
                     cpt += 1
     pourcentage = cpt / len(df_tree)
     print(f"Proportion de valeurs aberrantes: {pourcentage*100:.2f}%")
-    return (1 - pourcentage)
+    return (1 - pourcentage*5)
 
-print(rarity("./SmartFinal/heart_10000_with_adversary_move.csv"))
+print(rarity("./SmartFinal/heart.xls"))
