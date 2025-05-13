@@ -4,6 +4,7 @@ from CompletnessPart1 import completeness_score
 from DIversificationScore import global_dataset_score
 
 import pandas as pd
+import numpy as np
 import random
 
 # Load the dataset
@@ -39,6 +40,24 @@ for col in numeric_columns:
 
 # Save the dataset with outliers
 df.to_csv("outliers_heart.csv", index=False)
+
+
+# Insert NaN values in dataset
+def random_na(df, n=None, max_cols=None, seed=None):
+    rng = np.random.default_rng(seed)
+    if n is None:
+        n = random.randint(1, (df.shape[0] - 1) // 2)
+    if max_cols is None:
+        max_cols = random.randint(1, df.shape[1] - df.shape[1] // 3)
+    col_names = rng.choice(df.columns, size=max_cols, replace=False)
+    for col in col_names:
+        idx = rng.choice(df.index, size=n, replace=False)
+        df.loc[idx, col] = np.nan
+        
+random_na(df) 
+
+
+
 
 outliersZcoreScore = res('outliers_heart.csv')
 outliersColumnsScore = printresult('outliers_heart.csv')
