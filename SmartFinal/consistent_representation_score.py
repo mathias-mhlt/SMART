@@ -1,4 +1,7 @@
 
+import pandas as pd
+import requests
+
 def synonyme_from_api(word):
     url = f"https://api.datamuse.com/words?rel_syn={word}"
     response = requests.get(url)

@@ -60,11 +60,11 @@ random_na(df)
 
 
 
-outliersZcoreScore = res('outliers_heart.csv')
-outliersColumnsScore = printresult('outliers_heart.csv')
+outliersZcoreScore = res('outliers_heart.csv') 
+outliersColumnsScore = printresult('outliers_heart.csv') 
 diversityScore = global_dataset_score('outliers_heart.csv')
 cellsCompletnessScore = completeness_score('outliers_heart.csv')
-consistentRepresentationScore = consistent_representation_score('outliers_heart.csv')
+consistentRepresentationScore = consistent_representation_score('outliers_heart.csv') #entre 0 et 1
 print(outliersZcoreScore)
 print(outliersColumnsScore)
 print(diversityScore)
