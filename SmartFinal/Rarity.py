@@ -1,42 +1,53 @@
-import pandas as pd
+import os
+import numpy as np 
+import pandas as pd 
+import warnings
+import seaborn as sns
+import matplotlib.pyplot as plt
+"import plotly.express as px"
+warnings.filterwarnings("ignore")
+pd.set_option("display.max_rows",None)
+from sklearn import preprocessing
+import matplotlib 
+matplotlib.style.use('ggplot')
+from sklearn.preprocessing import LabelEncoder
 
-df = pd.read_csv("heart.xls")
-num_columns = df.shape[1]
-def threashold_method(threshold=0.6):
-    if any(target_counts > threshold):
-        return -1
-    else:
-        return 1
 
-def deviation_method(deviation=2):
-    mean = target_counts.mean()
-    # Check if any class proportion is more than 2 standard deviations away from the mean
-    if (any(target_counts/deviation > mean) or any(target_counts*deviation < mean)):
-        return -1
-    else:
-        return 1
+def calcul_prop (df, col) :
+    prop = df[col].value_counts(normalize=True)
+    prop = prop.reset_index()
+    prop.columns = [col, "proportion"]
+    prop["rapport"] = 0.0
+    return prop
 
-# Adjusted method to keep precision of little and many classifiers
-def adjusted_method(score=0):
-    # takes threashold and deviation methods for a more accurate result depending on their size
-    if len(target_counts) <= 5:
-        return threashold_method(5/6)
-    else:
-        return deviation_method(5)
+def rarity(donnees):
 
-#calculate balancing score
-def score_calculation(score):
-    #score = num_columns
-    if score >= 0:
-        return score
-    else:
-        return score
-score = 0 #balancing score
-for i in range(num_columns):
-    # choose column
-    target_col = df.columns[i]
-    target_counts = df[target_col].value_counts(normalize=True)
+    df=pd.read_csv(donnees)
+    df.head()
+    string_col = df.select_dtypes(include="object").columns
+    df[string_col]=df[string_col].astype("string")
+    df.dtypes
 
-    #Display class distribution
-    score += adjusted_method(score)
-score_calculation(score)
+    df_tree = df.apply(LabelEncoder().fit_transform)
+    df_tree.head()
+    df_tree = df.apply(LabelEncoder().fit_transform)
+    df_tree.head()
+
+    cpt = 0
+
+    for col in df_tree.columns:
+        proportion = calcul_prop(df_tree, col)
+        for i in range(len(proportion)):
+            autres_proportions = proportion["proportion"].drop(i)
+            if len(autres_proportions) > 0:
+                moyenne = autres_proportions.mean()
+                ecart_type_corrige = autres_proportions.std(ddof=1)
+                z = (proportion.at[i, "proportion"] - moyenne) / ecart_type_corrige
+                proportion.at[i, "rapport"] = z
+                if z < -2:
+                    cpt += 1
+    pourcentage = cpt / len(df_tree)
+    print(f"Proportion de valeurs aberrantes: {pourcentage*100:.2f}%")
+    return (1 - pourcentage)
+
+print(rarity("./SmartFinal/heart_10000_with_adversary_move.csv"))
