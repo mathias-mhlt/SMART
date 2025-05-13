@@ -1,6 +1,7 @@
 from MixedColumnDetector import res
 from Z_Score import printresult
 from CompletnessPart1 import completeness_score
+from consistent_representation_score import consistent_representation_score
 from DIversificationScore import global_dataset_score
 
 import pandas as pd
@@ -63,9 +64,12 @@ outliersZcoreScore = res('outliers_heart.csv')
 outliersColumnsScore = printresult('outliers_heart.csv')
 diversityScore = global_dataset_score('outliers_heart.csv')
 cellsCompletnessScore = completeness_score('outliers_heart.csv')
+consistentRepresentationScore = consistent_representation_score('outliers_heart.csv')
 print(outliersZcoreScore)
 print(outliersColumnsScore)
 print(diversityScore)
 print(cellsCompletnessScore)
+print(consistentRepresentationScore)
 
-print("Score final :"+str(outliersZcoreScore + outliersColumnsScore + diversityScore + cellsCompletnessScore))
+
+print("Score final :"+str(outliersZcoreScore + outliersColumnsScore + diversityScore + cellsCompletnessScore + consistentRepresentationScore))
