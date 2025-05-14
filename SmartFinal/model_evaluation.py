@@ -6,8 +6,9 @@ from logistic_regression import logistic_regression
 def evaluation (donnees):
 
     knn_result = knn(donnees)
-    rf_result = random_forest(donnees)
     lr_result = logistic_regression(donnees)
+    rf_result = random_forest(donnees)
+    
     cpt = 0
 
     if knn_result>0.8:
