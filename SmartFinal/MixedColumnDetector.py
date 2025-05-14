@@ -30,6 +30,7 @@ def res(path):
 
         if has_number or has_string:
             mixed_columns.append((col, num_count, str_count))
+            print(mixed_columns[-1])
     # Determine and print the relevant columns
     result = []
 
