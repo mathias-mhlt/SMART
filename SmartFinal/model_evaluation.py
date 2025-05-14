@@ -14,3 +14,5 @@ def evaluation (donnees):
     else:
         return 0.0
     
+
+print(evaluation("SmartFinal/weatherHistory.csv"))

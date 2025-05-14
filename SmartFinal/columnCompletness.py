@@ -7,4 +7,4 @@ def column_completeness(path):
 
     return score
 
-print(column_completeness("SmartFinal/heart_10000.csv"))
+print(column_completeness("SmartFinal/weatherHistory.csv"))

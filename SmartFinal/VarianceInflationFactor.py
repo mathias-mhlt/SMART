@@ -3,37 +3,43 @@ from sklearn.preprocessing import OrdinalEncoder
 import statsmodels.api as sm
 import pandas as pd
 
+
 def vif_score(path):
     """
-    Renvoie un score de redondance basé sur les VIF :
-        - 1.0 si toutes les colonnes ont VIF < 5
-        - 0.5 si aucune ≥ 10 mais au moins une entre [5, 10[
-        - 0.0 si au moins une colonne a un VIF ≥ 10
+    Score de multicolinéarité basé sur le VIF :
+      • 1.0 si tous les VIF < 5
+      • 0.5 si aucun VIF ≥ 10 mais au moins un VIF ∈ [5,10[
+      • 0.0 si au moins un VIF ≥ 10
+
+    Lignes incomplètes (NaN) et colonnes constantes sont simplement supprimées.
     """
+    df = pd.read_csv(path)
+    #X  = df.drop(columns=df.columns[-1]).copy()  # exclut la dernière colonne (cible)
 
-    dataset = pd.read_csv(path)
+    #cols = df.columns.tolist()
+    #pos = len(df.columns) - 1
+    #df.insert(pos, "Ferheineit", df[cols[3]]*(9/5) + 32)  
 
-    cols = dataset.columns.tolist()
+    #cols_to_drop = [df.columns[-1], df.columns[-9]]
 
-    pos = len(dataset.columns) - 1
-    dataset.insert(pos, "Duplicat", dataset[cols[-5]])  
+    cols_to_drop = [df.columns[-1]]
+    X = df.drop(columns=cols_to_drop).copy()
 
-    cat_cols = dataset.select_dtypes(include="object").columns
+    cat = X.select_dtypes(exclude="number").columns
+    if len(cat):
+        enc      = OrdinalEncoder()
+        X[cat]   = enc.fit_transform(X[cat])
 
-    enc = OrdinalEncoder()
-    dataset[cat_cols] = enc.fit_transform(dataset[cat_cols])
+    X = X.dropna(axis=0, how="any")
 
-    for col, cats in zip(cat_cols, enc.categories_):
-        mapping = {cat: int(code) for code, cat in enumerate(cats)}
+    Xc = sm.add_constant(X)
+    vifs = pd.Series([variance_inflation_factor(Xc.values, i) for i in range(1, Xc.shape[1])], index=X.columns, name="VIF")
+    
+    #print(vifs)
 
-    X_feat = dataset.drop(columns=dataset.columns[-1])
+    if   (vifs >= 10).any(): return 0.0
+    elif (vifs >=  5).any(): return 0.5
+    else:                    return 1.0
 
-    Xc = sm.add_constant(X_feat)
-    vifs = pd.Series([variance_inflation_factor(Xc.values, i) for i in range(1, Xc.shape[1])], index=X_feat.columns)
 
-    if (vifs >= 10).any():
-        return 0.0
-    elif (vifs >= 5).any():
-        return 0.5
-    else:
-        return 1.0
+#print(vif_score("SmartFinal/weatherHistory.csv"))
