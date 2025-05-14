@@ -9,7 +9,7 @@ def evaluation (donnees):
     rf_result = random_forest(donnees)
     lr_result = logistic_regression(donnees)
 
-    if (knn_result + rf_result + lr_result) >= 2:
+    if (knn_result + rf_result + lr_result) == 3:
         return True
     else:
         return False
