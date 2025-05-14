@@ -23,7 +23,7 @@ def printresult(path):
 
         # Calculate Z-scores and identify outliers
         z_scores = np.abs(stats.zscore(data))
-        print(z_scores)
+        #print(z_scores)
         threshold = 1
         outlier_mask = z_scores > threshold
         outlier_count = np.sum(outlier_mask)
