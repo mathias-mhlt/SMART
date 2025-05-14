@@ -3,6 +3,7 @@ from sklearn import model_selection
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import classification_report,roc_auc_score
+from sklearn.preprocessing import LabelEncoder
 
 
 def knn(donnees) :
@@ -10,7 +11,10 @@ def knn(donnees) :
 
     string_col = df.select_dtypes(include="object").columns
     df[string_col]=df[string_col].astype("string")
-    df_nontree=pd.get_dummies(df,columns=string_col,drop_first=False)
+    df_nontree = df.apply(LabelEncoder().fit_transform)
+    
+
+    
 
     target=df.columns[-1]
     y=df_nontree[target].values
@@ -49,9 +53,6 @@ def knn(donnees) :
     average_acc=average_acc/5
     print(f"The average accuracy of knn is : {average_acc}")
 
-    if average_acc>0.8:
-        return 1
-    else:
-        return 0
+    return average_acc
 
 #print(knn("SmartFinal/heart_10000.csv"))

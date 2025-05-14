@@ -40,9 +40,6 @@ def random_forest(donnees):
     average_acc=np.mean(acc_RandF)
     print(f"The average accuracy of random forest is : {average_acc}")
 
-    if average_acc>0.85:
-        return 1
-    else:
-        return 0
+    return average_acc
     
 #print(random_forest("SmartFinal/heart_10000.csv"))

@@ -4,13 +4,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report,roc_auc_score
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
+from sklearn.preprocessing import LabelEncoder
+
 
 def logistic_regression(donnees):
     df=pd.read_csv(donnees)
 
     string_col = df.select_dtypes(include="object").columns
     df[string_col]=df[string_col].astype("string")
-    df_nontree=pd.get_dummies(df,columns=string_col,drop_first=False)
+    df_nontree = df.apply(LabelEncoder().fit_transform)
 
     target=df.columns[-1]
     y=df_nontree[target].values
@@ -49,9 +51,6 @@ def logistic_regression(donnees):
     average_acc=np.mean(acc_log)
     print(f"The average accuracy of logistic regression is : {average_acc}")
 
-    if average_acc>0.75:
-        return 1
-    else:
-        return 0
+    return average_acc
     
 #print(logistic_regression("SmartFinal/heart_10000.csv"))
