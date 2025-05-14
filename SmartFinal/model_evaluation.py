@@ -10,9 +10,7 @@ def evaluation (donnees):
     lr_result = logistic_regression(donnees)
 
     if (knn_result + rf_result + lr_result) == 3:
-        return True
+        return 1.0
     else:
-        return False
+        return 0.0
     
-
-print(evaluation("SmartFinal/outliers_heart.csv"))

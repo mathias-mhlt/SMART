@@ -3,6 +3,7 @@ from Z_Score import printresult
 from CompletnessPart1 import completeness_score
 from consistent_representation_score import consistent_representation_score
 from DIversificationScore import global_dataset_score
+from columnCompletness import column_completeness
 
 import pandas as pd
 import numpy as np
@@ -64,12 +65,14 @@ outliersZcoreScore = res('outliers_heart.csv')
 outliersColumnsScore = printresult('outliers_heart.csv') 
 diversityScore = global_dataset_score('outliers_heart.csv')
 cellsCompletnessScore = completeness_score('outliers_heart.csv')
+columnCompletnessScore = column_completeness('outliers_heart.csv')
 consistentRepresentationScore = consistent_representation_score('outliers_heart.csv') #entre 0 et 1
 print(outliersZcoreScore)
 print(outliersColumnsScore)
 print(diversityScore)
 print(cellsCompletnessScore)
+print(columnCompletnessScore)
 print(consistentRepresentationScore)
 
 
-print("Score final :"+str(outliersZcoreScore + outliersColumnsScore + diversityScore + cellsCompletnessScore + consistentRepresentationScore))
+print("Score final :"+str(outliersZcoreScore + outliersColumnsScore + diversityScore + cellsCompletnessScore + columnCompletnessScore + consistentRepresentationScore))
