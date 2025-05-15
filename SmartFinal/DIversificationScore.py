@@ -69,7 +69,6 @@ def dispersion_categorical(series, p=0.10, n_iter=5000, alpha=0.05, js_thresh=0.
 
 
 def global_dataset_score(path, p=0.10, n_iter=5000, alpha=0.05, q_tol=0.10, js_thresh=0.05):
-    # Lecture
     df = pd.read_csv(path)
 
     target = df.columns[-1]
