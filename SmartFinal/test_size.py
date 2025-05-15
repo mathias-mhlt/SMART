@@ -1,4 +1,4 @@
-from size import size, cohens_d
+from size import size
 import pandas as pd
 import numpy as np
 import csv
@@ -79,7 +79,7 @@ def test_size (donnees, N=100, seed=42):
     plt.title(f"Impact de la taille du dataset sur la précision (N={N})")
     plt.grid(True)
     plt.show()
-
+    return
 
 test_size("./heart.csv", 500, 43) 
 

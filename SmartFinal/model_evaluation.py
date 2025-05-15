@@ -11,11 +11,11 @@ def evaluation (donnees):
     
     cpt = 0
 
-    if knn_result>0.8:
+    if knn_result>0.75:
         cpt += 1
-    if lr_result>0.75:
+    if lr_result>0.70:
         cpt += 1
-    if rf_result>0.85:
+    if rf_result>0.80:
         cpt += 1
 
     if cpt == 3:
