@@ -4,10 +4,9 @@ import pandas as pd
 df = pd.read_csv("heart.xls")
 num_columns = df.shape[1]#number of columns
 
-
 #threashold method
 #good if there are little classifiers
-def threashold_method(threshold=0.6):
+def threashold_method(threshold=5/6):
     if any(target_counts > threshold):
         print("\nThe dataset appears to be IMBALANCED.")
         return -1
@@ -15,23 +14,9 @@ def threashold_method(threshold=0.6):
         print("\nThe dataset appears to be BALANCED.")
         return 1
 
-
-#bad method
-"""def standard_deviation_method(deviation=0.1):
-    # Calculate the standard deviation of the class proportions
-    std_dev = target_counts.std()
-    mean = target_counts.mean()
-    # Check if the standard deviation is above a certain threshold
-    if std_dev > deviation:  # Adjust the threshold as needed
-        print("\nThe dataset appears to be IMBALANCED.")
-        score -= 1
-    else:
-        print("\nThe dataset appears to be BALANCED.")
-        score += 1"""
-
 #deviation method
 #good if there are many classifiers
-def deviation_method(deviation=2):    
+def deviation_method(deviation=5):    
     mean = target_counts.mean()
     # Check if any class proportion is more than 2 standard deviations away from the mean
     if (any(target_counts/deviation > mean) or any(target_counts*deviation < mean)):
